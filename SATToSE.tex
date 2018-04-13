@@ -2,8 +2,14 @@
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage{graphicx}
-\usepackage{flushend}
-\usepackage{titlesec}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{geometry}
+\usepackage{cuted, ragged2e}
+\usepackage{lipsum, array, booktabs, caption}
+\usepackage{multirow}
+\usepackage{graphicx}
 
 %opening
 \title{Título}
@@ -88,32 +94,33 @@ The two files with which we are going to work in this paper are:
 \textit{metadata.csv} and \textit{code\_10\%\_filt.csv}. 
 The data related with each file is outlined in Table I.
 
-\begin{center}
-\begin{tabular}{ l | c | r  }
-   \textbf{File} & \textbf{Key} & \textbf{Attribute(Description)} \\
- \hline  
-   \textit{code\_10\%\_filt.csv} & ProjectID & Scratch project Id \\
-    & Script-rank & Project-level ranking of script \\
-    & Sprite-type & Type of sprite the script is in\\
-    & Sprite-name & Name of sprite the script is in\\
-    & Coordinates & X-Y location of script in Scratch editor\\
-    & Total-blocks & Number of blocks comprising the script \\
-    & Line & Script-level ranking of block \\
-    & Block-type & Type of block the script is in\\
-    \textit{metadata.csv} & p\_ID & Scratch project Id \\
+\begin{table}[!ht]
+  \centering\renewcommand{\arraystretch}{1.2}
+   \begin{tabular}{@{}lccc@{}}
+    \toprule
+    \multicolumn{1}{c}{\textbf{File}} & \textbf{Key} &\textbf{Attribute(Description)} \\
+    \midrule
+    \multirow{8}{*}{\textit{code\_10\%\_filt.csv}} & ProjectID & Scratch project Id \\
+                & Script-rank & Project-level ranking of script \\
+                & Sprite-type & Type of sprite the script is in\\
+                & Sprite-name & Name of sprite the script is in\\
+                & Coordinates & X-Y location of script in Scratch editor\\
+                & Total-blocks & Number of blocks comprising the script \\
+                & Line & Script-level ranking of block \\
+                & Block-type & Type of block the script is in\\
     \hline
-    & project-name & Name given to project \\
-    & username & Author’s Scratch username\\
-    & total-views & Project views number \\
-    & total-remixes & Project remixes number \\
-    & total-favorites & Total users favoriting \\
-    & total-loves & Users ‘loving’ the project \\
-    & Mastery & Dr. Scratch total mastery score\\
-    \hline
-    
-\end{tabular}
-Table I. DATABASE SCHEMA: DATA STRUCTURE AND DESCRIPTION
-\end{center}
+    \multirow{8}{*}{\textit{metadata.csv}} & p\_ID & Scratch project Id \\
+                & project-name & Name given to project \\
+                & username & Author’s Scratch username\\
+                & total-views & Project views number \\
+                & total-remixes & Project remixes number \\
+                & total-favorites & Total users favoriting \\
+                & total-loves & Users ‘loving’ the project \\
+                & Mastery & Dr. Scratch total mastery score\\
+    \bottomrule
+    \end{tabular}
+    \caption{Database schema: Data structure and description}\label{tab:titlenew}
+\end{table}
 
 \par In Table I, the last Key \textit{Mastery}, is the result of Dr. Scratch
 score. Dr. Scratch is a web platform of free software or open source that 
@@ -125,7 +132,7 @@ Computational Thinking (CT). \par
 In order to assign the punctuation of CT to a certain project, Dr. Scratch
 is based on assess the demonstrated level by the programmer in the seven
 following aspects: abstraction and decomposition of problems, logical
-thinking, synchronization, parallelism, algorithmic notions offlow control, 
+thinking, synchronization, parallelism, algorithmic notions of flow control, 
 interactivity with the user and representation of the information. The 
 assessment of each one of these concepts can be 0, 1, 2 or 3 points, being
 the projects, therefore, contained in the range from 0 to 21 point. According
@@ -133,12 +140,110 @@ to the final punctuation obtained, Dr. Scratch differentiates three levels of
 projects: basics, from 0 to 7 points, developing from 7 to 15 points, and
 professional, with punctuation between 15 a 21 points.
 
-
+\begin{center}
 \section*\normalsize{III. METHODOLOGY}
+\end{center}
 
+One that we had the dataset filtered and ordered, we can analyze them.
+The main purpose of the paper is to find correlations among Scratch
+projects. In order to reach this objective, we have developed an analysis
+process. \par
+Initially, we focused on the characteristic "total-blocks". We generated a new
+dataset grouped by "projectID", "script-rank" and "total-blocks". In this way,
+we obtained the total number of blocks for each Scratch project and its project
+Id. The following stage was to analyze among the total blocks of each project, 
+which of them were different, that it, we calculated the variety of block types. 
+In order to obtain this new characteristic, we grouped the unique block types for
+each Scratch project, obtaining a new dataset.\par
+We related both dataset and obtained two correlations: the correlation between
+"total-blocks" and "variety-blocks", and the correlation between "total-blocks"
+and "repeated-blocks", represented in Figure 1. \par
+
+
+\begin{figure}
+\includegraphics[height=4cm]{1.png}
+\includegraphics[height=4cm]{2.png}
+\caption{Correlations between total blocks and blocks type.}
+\end{figure}
+
+The following analysis was focused on correlate the total number of blocks per project
+and its metadata. For this process, it was necessary relate both CSV files. For this
+reason, the first stage was to select from \textit{metadata.csv}, only the id of the
+projects contained in file \textit{code\_10\%\_filt.csv}.\par
+One that we obtained both files filtered, we analyzed the correlation between 
+``total-blocks'' and ``total-views'', ``total-blocks'' and ``total-remixes'', 
+``total-blocks'' and ``Mastery'' and ``variety-blocks'' and ``Mastery''. The result
+of these correlations is showed in Figure 2.\par
+
+\begin{figure}
+\begin{center}
+\includegraphics[height=4cm]{3.png}
+\includegraphics[height=4cm]{4.png}
+\includegraphics[height=4cm]{5.png}
+\includegraphics[height=4cm]{new.png}
+\caption{Correlations between total blocks and metadata.}
+\end{center}
+\end{figure}
+
+Finally, we considered relevant for the analysis of the paper, to correlate some
+characteristics of metadata. In this way, we analyzed the correlation between: 
+``Mastery'' and ``total-views'', ``total-remixes'' and ``total-views'',
+``total-views'' and ``total-favorites'' and ``total-views'' and ``total-loves''.
+The results are represented in Figure 3.
+
+\begin{figure}
+\begin{center}
+\includegraphics[height=4cm]{7.png}
+\includegraphics[height=4cm]{8.png}
+\includegraphics[height=4cm]{9.png}
+\includegraphics[height=4cm]{10.png}
+\caption{Correlations between metadata.}
+\end{center}
+\end{figure}
+
+\begin{center}
 \section*\normalsize{IV. RESULTS}
+\end{center}
 
+In the first stage of analysis, we obtained interesting results, as is shown in
+Figure 1. The value of first correlation is 0.53, which indicates that the 
+relation between the number of total blocks in a project is not proportional
+to its variety, analyzed as different block types. On the contrary, the
+correlation obtained between total blocks in a project and repeated blocks is
+0.99. This result indicates that those projects which have a greater number of 
+blocks, are formed by more quantity of repeated blocks. \par
+In the second analysis, shown in Figure 2, we can observe that it does not exist
+a clear correlation between data. These results indicate that projects which have
+a greater number of blocks, not necessarily receive a greater number of views and
+remixes by other users. On the other hand, projects which have a greater number of
+blocks, neither obtain a greater final mastery.\par
+Finally, contrary to the previous analysis, Figure 3 shows a high correlations 
+between metadata of a Scratch project. The correlation obtained between the total
+views of a given project and the total number of remixes, is 0.86. This result 
+indicates that those projects that have realized a greater quantity of remixes,
+are more socials and receive a greater quantity of views. If we analyze the 
+correlation between total views of a project and its total number of loves and
+favorites, the correlation is even greater. The results obtained, correspondingly
+are 0.94 and 0.95. That is, whose projects that have received a greater number
+of views, will receive more favorites and loves of other users. However, the
+correlation between total views and the final mastery of a project, is almost
+null. Projects with more views, not necessarily will have a greater mastery.\par
+
+\begin{center}
 \section*\normalsize{V. CONCLUSIONS}
+\end{center}
 
+We presented an analysis of data obtained from Scratch projects repository, thanks
+to the previous work of the paper [1], which includes the source code of the Scratch
+projects, their metadata, and their programming mastery scoring results.
+After a filtering process, we obtained the dataset analyzed in this paper. We
+searched different correlations between code source of a Scratch project and metadata.
+The results indicated that
 
+\begin{center}
+\section*\normalsize{REFERENCES}
+\end{center}
+
+\small{[1]	E.Aivaloglou, F.Hermans, j.Moreno-León and G.Robles, ``A Dataset of Scratch Programs:
+Scraped, Shaped and Scored'', Report TUD-SERG-2017-007.}
 \end{document}
