@@ -12,8 +12,16 @@
 \usepackage{graphicx}
 
 %opening
-\title{Título}
-\author{Autor}
+\title{A Preliminary Analysis of Scratch Projects}
+
+\author{
+Ángela Vargas-Alba \\ Universidad Rey Juan Carlos\\
+                Madrid, Spain \\ a.vargasa@alumnos.urjc.es
+\and
+Gregorio Robles \\Universidad Rey Juan Carlos \\
+                Fuenlabrada, Madrid, Spain \\grex@gsyc.urjc.es   
+}
+
 \date{}
 
 
@@ -23,7 +31,7 @@
 \maketitle
 
 
-\small \textbf{\textit{Abstract}—One of the most widely used tool for the initiation in the world of programming is
+\small \textbf{\textit{Abstract}—One of the most widely used tools for the initiation in the world of programming is
 Scratch, a visual programming language oriented to education. Its use has intensified in the recent years with millions of
 projects that can be shared and viewed by other Scratch users. 
 In this paper, we analyze a dataset of 250K Scratch projects obtained from the Scratch repository,  with the objective of
@@ -47,7 +55,7 @@ and, on the other hand, how metadata of the proyect is related itself. \par
 In order to accomplish this analysis, we have based on the paper ``A Dataset of Scratch Programs: Scraped, Shaped and
 Scored dataset'' [1]. In this work, authors collect data from the web interface of the Scratch project repository, by means 
 of a scraping program. It retrieves a JSON file for each of the listed projects and, subsequently, they obtained the JSON files for
-250,163 projects. Finally, they parsed this dataset and obtained a list of Scratch projects with metadata and program data. \par
+250,163 projects. Finally, they parsed this dataset and obtained a   list of Scratch projects with metadata and program data. \par
 In this paper, we have utilized this dataset, which contained more than 250K projects from the Scratch repository, with the
 main aim of analyze if there is any kind of relationship between them, and extract useful conclusions about it.\par
 The structure of the work has been divided according to the following way: In section II. Dataset construction, it will be
@@ -72,11 +80,11 @@ characters.\par
 Respect to the file \textit{code.csv}, it was a file with large dimensions,
 so that we utilized only the 10\% of its content in order to work in a more
 comfortable way. This new file, \textit{code\_10\%\_headers.csv},
-contained information about only 20061 of the total projects. For each
+contained information about only 20,061 of the total projects. For each
 project, it contained different data, which will be described in
-section B, so that it was formed by 3988988 total lines. \par
-Based on the filtering process, we removed 3166 lines, but the number of
-different projects was the same, 20061, so we removed some data related with
+section B, so that it was formed by 3,988,988 total lines. \par
+Based on the filtering process, we removed 3,166 lines, but the number of
+different projects was the same, 20,061, so we removed some data related with
 projects, but the same number of projects was maintained.\par
 On the other hand, we decided to remove the characteristics related to the
 parameters of each project. We considered that these data was not relevant
@@ -92,9 +100,9 @@ this file and removed some columns.
 
 The two files with which we are going to work in this paper are:
 \textit{metadata.csv} and \textit{code\_10\%\_filt.csv}. 
-The data related with each file is outlined in Table I.
+The data related with each file is outlined in Table~\ref{tab:schema}.
 
-\begin{table}[!ht]
+\begin{table*}
   \centering\renewcommand{\arraystretch}{1.2}
    \begin{tabular}{@{}lccc@{}}
     \toprule
@@ -119,10 +127,11 @@ The data related with each file is outlined in Table I.
                 & Mastery & Dr. Scratch total mastery score\\
     \bottomrule
     \end{tabular}
-    \caption{Database schema: Data structure and description}\label{tab:titlenew}
-\end{table}
+    \caption{Database schema: Data structure and description}
+    \label{tab:schema}
+\end{table*}
 
-\par In Table I, the last Key \textit{Mastery}, is the result of Dr. Scratch
+\par In Table~\ref{tab:schema}, the last Key \textit{Mastery}, is the result of Dr. Scratch
 score. Dr. Scratch is a web platform of free software or open source that 
 allows users to analyze their projects carried out in Scratch, in a simple
 way. With Dr. Scratch, both students and educators can analyze if their
