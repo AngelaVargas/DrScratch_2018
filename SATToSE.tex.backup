@@ -253,7 +253,7 @@ are 0.94 and 0.95. That is, whose projects that have received a greater number
 of views, will receive more favorites and loves of other users. However, the
 correlation between total views and the final mastery of a project, is almost
 null. Projects with more views, not necessarily will have a greater mastery.\par
-In Table ~\ref{tab:values}, is shown a summary of the obtained results.
+In Table ~\ref{tab:values}, 
 
 \begin{table}
    \begin{tabular}{@{}lccc@{}}
@@ -285,8 +285,7 @@ to the previous work of the paper [1], which includes the source code of the Scr
 projects, their metadata, and their programming mastery scoring results.
 After a filtering process, we obtained the dataset analyzed in this paper. We
 searched different correlations between code source of a Scratch project and metadata.
-The analysis performed can facilitate the development of some applications or tools
-in education area and computing assessment.
+The results indicated that
 
 \begin{center}
 \section*\normalsize{REFERENCES}
