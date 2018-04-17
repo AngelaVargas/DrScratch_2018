@@ -52,28 +52,34 @@ The goal of this research is to gain knowledge on the Scratch ecosystem in order
 \end{center}
 
 At present time, an increasingly tendency of introducing the programming in the
-classrooms is developing, as part of the movement that tries to boost the development of Computational Thinking (CT) skills among younger students~\cite{wing2006computational}. A large number of learners has decided to use Scratch as a learning language (and platform)~\cite{resnick2009scratch}. Currently, Scratch
+classrooms is developing, as part of the movement that tries to boost the development of Computational Thinking (CT)
+skills among younger students~\cite{wing2006computational}. A large number of learners has decided to use Scratch as
+a learning language (and platform)~\cite{resnick2009scratch}. Currently, Scratch
 has in its web platform more than 30 millions of shared projects and more than 20 millions of registered users.
+Thanks to this high activity, it is possible to inspect different aspects which relate projects each other.
 
-Thanks to the high activity in the web platform of Scratch, it is possible to inspect different aspects which relate projects
-each other. Thus, the motivation of this paper is, on one hand, to analyze which characteristics can relate different projects
-and, on the other hand, how metadata of the project is related itself, in order to, in a future, this analysis could be
-useful for some tools or applications.
+Thus, the motivation of this paper is, on one hand, to analyze which characteristics can relate different projects
+and, on the other hand, how metadata of the project is related itself. This analysis could be useful for some tools or
+applications in the future.
 
 In order to accomplish this analysis, we use the dataset offered by the MSR Data Paper ``A Dataset of Scratch Programs: Scraped, Shaped and
-Scored dataset'' by Aivaloglou et al.~\cite{aivaloglou2017dataset}. For this dataset, authors collect data from the web interface of the Scratch project repository, by means 
-of a scraping program. It offers a JSON file for each of the listed projects and, subsequently, they obtained the JSON files for
-250,163 projects. Finally, they parsed this dataset and obtained a  list of Scratch projects with metadata and program data, and use the Dr. Scratch assessment tool~\cite{moreno2015dr} to evaluate the projects based on several dimensions.
+Scored dataset'' by Aivaloglou et al.~\cite{aivaloglou2017dataset}. For this dataset, authors collect data from the web
+interface of the Scratch project repository, by means of a scraping program. It offers a JSON file for each of the listed
+projects and, subsequently, they obtained the JSON files for 250,163 projects. They parsed this dataset and obtained
+a list of Scratch projects with metadata and program data. Finally, they use the Dr.Scratch assessment tool~\cite{moreno2015dr} 
+to evaluate them.
 
-In this paper, we have utilized this dataset, which contained more than 250K projects from the Scratch repository, with the
-main aim of analyze if there is any kind of relationship between them, and extract useful conclusions about it. 
+In this paper, we have utilized this dataset, which contained more than 250K projects from the Scratch repository. The
+main aim is to analyze the relationship between the projects, and extract useful conclusions about it. 
 This analysis can help educators in the assessment of Scratch projects. In addition, it can facilitate the learning process
 in different aspects, for example, getting users to do more social projects or avoiding that users tend to repeat
 code or blocks from other projects.
 
 
-The structure of the work has been divided according to the following way: In section~\ref{sec:construction} the process used to retrieve the dataset is presented. Section~\ref{sec:methodology} includes the methodology used to obtain the analyzed correlations.
-The results are presented in Section~\ref{sec:results} and, finally, in the Section~\ref{sec:conclusions}, we present the conclusions reached.
+The structure of the work has been divided according to the following way: In section~\ref{sec:construction} the process
+used to retrieve the dataset is presented. Section~\ref{sec:methodology} includes the methodology used to obtain the analyzed
+correlations. The results are presented in Section~\ref{sec:results} and, finally, in the Section~\ref{sec:conclusions}, we
+present the conclusions reached.
 
 
 
@@ -83,35 +89,34 @@ The results are presented in Section~\ref{sec:results} and, finally, in the Sect
 \subsection{Data collection}
 
 To collect the data from the web interface of the Scratch
-project repository, we used the dataset created by for the 2017 MSR Data paper~\cite{aivaloglou2017dataset}.
+project repository, we used the dataset created by the 2017 MSR Data paper~\cite{aivaloglou2017dataset}.
 This dataset was composed as from two files: \textit{metadata.csv} and
 \textit{code.csv}. These files were formed by heterogeneous data, that is,
 they contained different types of data. For this reason, we initially
 did a data filtering. With a script programmed on \textit{python}, we read
-both csv files and remove \textit{nul} or ``strange'' values from them.
+both csv files and removed \textit{nul} or ``strange'' values from them.
 We understood ``strange'' values as those values that contained some special
 characters.
 
-Respect to the file \textit{code.csv}, it was a file with large dimensions,
-so that we utilized only the 10\% of its content in order to work in a more
+Respect to the file \textit{code.csv}, it was a file with large dimensions. 
+For this reason, we utilized only the 10\% of its content in order to work in a more
 comfortable way. This new file, \textit{code\_10\%\_headers.csv},
 contained information about only 20,061 of the total projects. For each
 project, it contained different data, which will be described in
 subsection~\ref{subsec:description}, so that it was formed by 3,988,988 total lines.
 
 Based on the filtering process, we removed 3,166 lines, but the number of
-different projects was the same, 20,061, so we removed some data related with
+different projects was the same, 20,061. We removed some data related with
 projects, but the same number of projects was maintained.
 
-On the other hand, we decided to remove the characteristics related to the
+On the other hand, we removed the characteristics related to the
 parameters of each project. We considered that these data was not relevant
-for the analysis, so finally we obtained a file
-\textit{code\_10\%\_filt.csv}.
+for the analysis. Finally we obtained the file \textit{code\_10\%\_filt.csv}.
 
 Respect to the other file, \textit{metadata.csv}, it was no necessary to carry
 out the filtering process. Data of this file was homogeneous, so it was
 possible to work directly. However, it contained metadata which we didn't
-consider useful in the analysis of this paper. For this reason, we reduce
+consider useful in the analysis of this paper. For this reason, we reduced
 this file and removed some columns.
 
 \subsection{Data description}
@@ -119,9 +124,9 @@ this file and removed some columns.
 
 Scratch is a visual programming language whose projects are based on a structure
 composed of different blocks. The code of a Scratch program, is formed by scripts,
-which is defined as a set of code blocks. Each script belongs to a sprite, an object
-with it own associated code. In Figure~\ref{tab:scratch}, is shown an example
-Scratch script witch belongs to a given sprite.
+which are defined as a set of code blocks. Each script belongs to a sprite, an object
+with its own associated code. In Figure~\ref{tab:scratch}, is shown an example
+Scratch script which belongs to a given sprite.
 
 \begin{figure}
 \begin{center}
@@ -131,7 +136,7 @@ Scratch script witch belongs to a given sprite.
 \end{center}
 \end{figure}
 
-The two files with which we are going to work in this paper are:
+In this paper, we are going to work with two files:
 \textit{metadata.csv} and \textit{code\_10\%\_filt.csv}. 
 The data related with each file is outlined in Table~\ref{tab:schema}.
 
@@ -165,17 +170,15 @@ The data related with each file is outlined in Table~\ref{tab:schema}.
 \end{table*}
 
 
-In Table~\ref{tab:schema}, the last key \textit{Mastery}, is the result of Dr. Scratch
-score. Dr. Scratch is a web platform of free software or open source that 
-allows users to analyze their projects carried out in Scratch, in a simple
-way~\cite{moreno2015dr}. With Dr. Scratch, both students and educators can analyze if their
-projects have been programmed correctly, learn from their mistakes or
+In Table~\ref{tab:schema}, the last key \textit{Mastery}, is the result of Dr.Scratch
+score. Dr.Scratch is a web platform of free software that allows users to analyze their projects 
+carried out in Scratch, in a simple way~\cite{moreno2015dr}. With Dr. Scratch, both students and
+educators can analyze if their projects have been programmed correctly, learn from their mistakes or
 receive feedback to improve their code, thus developing their capacity of
 Computational Thinking (CT).
 
-In order to assign the punctuation of CT to a certain project, Dr. Scratch
-is based on assess the demonstrated level by the programmer in the seven
-following aspects: abstraction and decomposition of problems, logical
+In order to assign the punctuation of CT to a certain project, Dr.Scratch assesses the demonstrated
+level by the programmer in the seven following aspects: abstraction and decomposition of problems, logical
 thinking, synchronization, parallelism, algorithmic notions of flow control, 
 interactivity with the user and representation of the information. The 
 assessment of each one of these concepts can be 0, 1, 2 or 3 points, being
@@ -187,7 +190,7 @@ professional, with punctuation between 15 a 21 points.
 \section{Methodology}
 \label{sec:methodology}
 
-One that we had the dataset filtered and ordered, we can analyze them.
+Once the dataset is filtered and ordered, we can analyze them.
 The main purpose of the paper is to find correlations among Scratch
 projects. In order to reach this objective, we have developed an analysis
 process.
@@ -196,7 +199,7 @@ Initially, we focused on the characteristic ``total-blocks''. We generated a new
 dataset grouped by ``projectID'', ``script-rank'' and ``total-blocks''. In this way,
 we obtained the total number of blocks for each Scratch project and its project
 Id. The following stage was to analyze among the total blocks of each project, 
-which of them were different, that it, we calculated the variety of block types. 
+which of them were different. We calculated the variety of block types. 
 In order to obtain this new characteristic, we grouped the unique block types for
 each Scratch project, obtaining a new dataset.
 
@@ -217,7 +220,7 @@ and its metadata. For this process, it was necessary relate both CSV files. For 
 reason, the first stage was to select from \textit{metadata.csv}, only the id of the
 projects contained in file \textit{code\_10\%\_filt.csv}.
 
-One that we obtained both files filtered, we analyzed the correlation between 
+Once that we obtained both files filtered, we analyzed the correlation between 
 ``total-blocks'' and ``total-views'', ``total-blocks'' and ``total-remixes'', 
 ``total-blocks'' and ``Mastery'' and ``variety-blocks'' and ``Mastery''. The result
 of these correlations is showed in Figure~\ref{tab:corr_2}.
@@ -274,11 +277,11 @@ views of a given project and the total number of remixes, is 0.86. This result
 indicates that those projects that have realized a greater quantity of remixes,
 are more socials and receive a greater quantity of views. If we analyze the 
 correlation between total views of a project and its total number of loves and
-favorites, the correlation is even greater. The results obtained, correspondingly
-are 0.94 and 0.95. That is, whose projects that have received a greater number
-of views, will receive more favorites and loves of other users. However, the
-correlation between total views and the final mastery of a project, is almost
-null. Projects with more views, not necessarily will have a greater mastery.
+favorites, the correlation is even greater. The results obtained are 0.94 and 0.95,
+respectively. Projects that have received a greater number of views, will receive more
+favorites and loves from other users. However, the correlation between total views and the
+final mastery of a project, is almost null. Projects with more views, not necessarily
+will have a greater mastery.
 
 Table~\ref{tab:values} shows a summary of the obtained results.
 
@@ -307,11 +310,11 @@ Table~\ref{tab:values} shows a summary of the obtained results.
 \section{Conclusions}
 \label{sec:conclusions}
 
-We presented an analysis of data obtained from Scratch projects repository, thanks
+We have presented an analysis of data obtained from Scratch repository, thanks
 to the previous work of the paper~\cite{aivaloglou2017dataset}, which includes the source code of the Scratch
 projects, their metadata, and their programming mastery scoring results.
-After a filtering process, we obtained the dataset analyzed in this paper. We
-searched different correlations between code source of a Scratch project and metadata.
+After a filtering process, we have obtained the dataset analyzed in this paper. We
+have searched different correlations between code source of a Scratch project and metadata.
 The analysis performed can facilitate the development of some applications or tools
 in education area and computing assessment~\cite{robles2018ontools}.
 
